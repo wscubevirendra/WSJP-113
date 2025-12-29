@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        .container {
+            width: 500px;
+            height: 500px;
+            border: 2px double red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 50px;
+
+        }
+
+        .box {
+            width: 90%;
+            height: 200px;
+            border: 2px solid green;
+        }
+
+        .box:nth-child(2) {
+            border: 2px solid yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box">
+            <h2>WsCube Tech</h2>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea non esse dolor! A eum vitae ex inventore
+                enim alias distinctio. Ipsum, voluptatem odio veritatis nesciunt temporibus repudiandae commodi debitis
+                quos.
+            </p>
+
+        </div>
+        <div class="box">
+            <ul>
+                <li class="inner">List Item1</li>
+                <li class="inner">List Item2</li>
+                <li class="inner">List Item3</li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    <script>
+        listItem = document.querySelector(".inner:nth-child(2)");
+        console.log(listItem)
+        
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 700px;
+            /* border: 2px solid red; */
+            margin: 20px auto;
+            padding: 10px;
+        }
+
+        .accord-box {
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            padding: 10px;
+        }
+
+        .accord-title {
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .accord-title:hover {
+            border-radius: 10px;
+
+        }
+
+        .open {
+            border-top: 2px solid black;
+            padding-top: 10px;
+
+        }
+
+        .content {
+            height: 0px;
+            overflow: hidden;
+            transition: 800ms;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="accord-box">
+            <h2 class="accord-title">Question 1</h2>
+            <div style="height: 300px;" class="content open">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, corporis nostrum. Veniam
+                    perspiciatis debitis nulla molestias quam fuga illo odio beatae, explicabo facere? Reprehenderit
+                    veritatis aliquam dolor sed explicabo iste!
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, corporis nostrum. Veniam
+                    perspiciatis debitis nulla molestias quam fuga illo odio beatae, explicabo facere? Reprehenderit
+                    veritatis aliquam dolor sed explicabo iste!
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, corporis nostrum. Veniam
+                    perspiciatis debitis nulla molestias quam fuga illo odio beatae, explicabo facere? Reprehenderit
+                    veritatis aliquam dolor sed explicabo iste!
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, corporis nostrum. Veniam
+                    perspiciatis debitis nulla molestias quam fuga illo odio beatae, explicabo facere? Reprehenderit
+                    veritatis aliquam dolor sed explicabo iste!
+                </p>
+            </div>
+        </div>
+        <div class="accord-box">
+            <h2 class="accord-title">Question 2</h2>
+            <div class="content">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, corporis nostrum. Veniam
+                    perspiciatis debitis nulla molestias quam fuga illo odio beatae, explicabo facere? Reprehenderit
+                    veritatis aliquam dolor sed explicabo iste!
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, corporis nostrum. Veniam
+                    perspiciatis debitis nulla molestias quam fuga illo odio beatae, explicabo facere? Reprehenderit
+                    veritatis aliquam dolor sed explicabo iste!
+                </p>
+            </div>
+        </div>
+        <div class="accord-box">
+            <h2 class="accord-title">Question 3</h2>
+            <div class="content">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, corporis nostrum. Veniam
+                    perspiciatis debitis nulla molestias quam fuga illo odio beatae, explicabo facere? Reprehenderit
+                    veritatis aliquam dolor sed explicabo iste!
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, corporis nostrum. Veniam
+                    perspiciatis debitis nulla molestias quam fuga illo odio beatae, explicabo facere? Reprehenderit
+                    veritatis aliquam dolor sed explicabo iste!
+                </p>
+            </div>
+        </div>
+        <div class="accord-box">
+            <h2 class="accord-title">Question 4</h2>
+            <div class="content">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, corporis nostrum. Veniam
+                    perspiciatis debitis nulla molestias quam fuga illo odio beatae, explicabo facere? Reprehenderit
+                    veritatis aliquam dolor sed explicabo iste!
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, corporis nostrum. Veniam
+                    perspiciatis debitis nulla molestias quam fuga illo odio beatae, explicabo facere? Reprehenderit
+                    veritatis aliquam dolor sed explicabo iste!
+                </p>
+            </div>
+        </div>
+        <div class="accord-box">
+            <h2 class="accord-title">Question 4</h2>
+            <div class="content">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, corporis nostrum. Veniam
+                    perspiciatis debitis nulla molestias quam fuga illo odio beatae, explicabo facere? Reprehenderit
+                    veritatis aliquam dolor sed explicabo iste!
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, corporis nostrum. Veniam
+                    perspiciatis debitis nulla molestias quam fuga illo odio beatae, explicabo facere? Reprehenderit
+                    veritatis aliquam dolor sed explicabo iste!
+                </p>
+            </div>
+        </div>
+        <div class="accord-box">
+            <h2 class="accord-title">Question 4</h2>
+            <div class="content">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, corporis nostrum. Veniam
+                    perspiciatis debitis nulla molestias quam fuga illo odio beatae, explicabo facere? Reprehenderit
+                    veritatis aliquam dolor sed explicabo iste!
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, corporis nostrum. Veniam
+                    perspiciatis debitis nulla molestias quam fuga illo odio beatae, explicabo facere? Reprehenderit
+                    veritatis aliquam dolor sed explicabo iste!
+                </p>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script>
+        var accordTitle = document.querySelectorAll(".accord-title");
+        for (let title of accordTitle) {
+            title.addEventListener(
+                "click",
+                function () {
+                    let openContent = document.querySelector(".open");
+                    let accordContent = title.nextElementSibling;
+                    if (openContent != null) {
+                        openContent.classList.remove("open");
+                        openContent.style = ""
+                    }
+                    if (openContent == accordContent) return
+                    accordContent.classList.add("open")
+                    accordContent.style.height = accordContent.scrollHeight + 10 + "px";
+                    accordContent.style.overflow = "";
+                }
+            )
+        }
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,129 @@
+<script>
+    // function light(signal) {
+    //     //signal=red
+    //     var result = ""
+    //     if (signal == "red") {
+    //         result = 'STOP'
+    //     } else if (signal == "green") {
+    //         result = 'GO'
+    //     } else if (signal == "yellow") {
+    //         result = 'SLOW'
+    //     } else {
+    //         result = 'invalid signal'
+    //     }
+
+    //     return result
+
+
+    // }
+
+    // var final = light("red");
+    // var final1 = light("pink")
+    // console.log(final1)
+
+    // function findLargest(array) {
+    //     var larg = array[0];  //800
+    //     for (var data of array) {
+    //         if (larg < data) { 
+    //             //500<800
+    //             larg = data
+    //         }
+    //     }
+
+    //     console.log(larg)
+
+    // }
+    // findLargest([10, 200, 500, 20, 800]);
+    // findLargest([12,14,16,22]);
+    // findLargest([1,3,6,10]);
+
+    // Find the status of day wheather it is morning, afternoon, evening,or night by input of time using function
+
+    //morning -- 4-12
+    //afternoon 12-17
+    //evening-17-20
+    //20-24---Night
+    //0-4--Night
+
+    // function timing(time) {
+    //     if (time >= 4 && time < 12) {
+    //         console.log("morning")
+    //     } else if (time >= 12 && time < 17) {
+    //         console.log("afternoon")
+    //     } else if (time >= 17 && time < 20) {
+    //         console.log("evening")
+    //     } else if ((time >= 20 && time < 24) || (time >= 0 && time < 4)) {
+    //         console.log('Night')
+    //     }else{
+    //         console.log("Invalid Time")
+    //     }
+
+    // }
+
+    // timing(5)
+    // timing(23)
+    // timing(2)
+    // timing(14)
+
+    // function calculator(a, b, sign) {
+    //     var result = ""
+    //     if (sign == "+") {
+    //         result = a + b
+    //     } else if (sign == "-") {
+    //         result = a - b
+    //     } else if (sign == "*") {
+    //         result = a * b
+    //     } else if (sign == "/") {
+    //         result = a / b
+    //     } else if (sign == "%") {
+    //         result = a % b
+    //     } else {
+    //         result = "Invalid sign"
+    //     }
+
+    //     return result
+
+    // }
+
+    // console.log(calculator(10, 20, "+"))
+    // console.log(calculator(10, 20, "Sdsddasd"))
+
+
+    //Create a function to create a new arrray of positive number only-[-10,20,-2,30]------->[20,30]
+    //Create a function to create a new arrray of Number number only  -[true,false,10,20,'apple']---[10,20]
+
+    // function positiveArray(array) {
+    //     var newArray = [];
+    //     for (data of array) {
+    //         if (data > 0) {
+    //             newArray.push(data)
+    //         }
+    //     }
+
+    //     console.log(newArray)
+
+    // }
+
+    // positiveArray([10, -20, -2, 3, -5]);
+    // positiveArray([10, -20, -2, 3, -5,-200,-400,500]);
+
+    function isNumber(array) {
+        var newArray = []
+        for (data of array) {
+            if (typeof (data) == "number") {
+                newArray.push(data)
+            }
+        }
+        console.log(newArray)
+
+    }
+
+    isNumber(['apple', true, 20, 300, 500,false])
+
+
+
+
+
+
+
+</script>

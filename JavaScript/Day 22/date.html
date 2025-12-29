@@ -1,0 +1,18 @@
+<script>
+function dob(birth) {
+    var birthDate = new Date(birth);
+    var date = new Date();
+
+    var totalTime = date - birthDate; // total milliseconds
+    var totalDays = parseInt(totalTime / 1000 / 60 / 60 / 24); // convert to days
+
+    var year = Math.floor(totalDays / 365);
+    var month = Math.floor((totalDays % 365) / 30);
+    var days = Math.floor((totalDays % 365) % 30); // ✅ calculate remaining days
+
+    console.log(`Total Days --- ${totalDays}`);
+    console.log(`Year: ${year}, Month: ${month}, Days: ${days}`);
+}
+
+dob('2004-08-18');
+</script>

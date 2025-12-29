@@ -1,0 +1,141 @@
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            box-sizing: border-box;
+            padding: 0;
+        }
+
+        h1 {
+            margin-top: 20px;
+            color: white;
+            font-weight: bold;
+        }
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(120deg, rgb(168, 147, 194), rgb(126, 113, 143));
+            display: flex;
+
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 600px;
+            max-height: 300px;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            background-color: white;
+            margin-top: 50px;
+            padding: 10px;
+        }
+
+        input {
+            width: 90%;
+            padding: 4px;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 10px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+
+        }
+
+        .inp-btn {
+            display: flex;
+            justify-content: space-around;
+
+        }
+
+        .inp-btn button {
+            border: none;
+            background-color: blueviolet;
+            color: white;
+            border-radius: 4px;
+            padding: 0px 10px;
+            cursor: pointer;
+        }
+
+        .list {
+            margin-top: 10px;
+            list-style: none;
+        }
+
+        .listItem {
+            background-color: blueviolet;
+            padding: 6px;
+            display: flex;
+            justify-content: space-between;
+            border-radius: 4px;
+            color: white;
+            font-size: 17px;
+            margin-bottom: 4px;
+        }
+
+        .deltBtn {
+            border: none;
+            background-color: blueviolet;
+            color: white;
+            border-radius: 4px;
+            padding: 0px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Tudo App</h1>
+    <div class="container">
+        <div class="inp-btn">
+            <input id="inp" type="text">
+            <button id="addBtn">Add</button>
+        </div>
+        <ul class="list">
+
+        </ul>
+
+    </div>
+
+    <script>
+        var addBtn = document.querySelector("#addBtn");
+        var list = document.querySelector(".list");
+        var inp = document.querySelector("#inp");
+        addBtn.addEventListener("click", addTudo);
+
+        
+        inp.addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+                addTudo();
+            }
+
+        })
+
+        function addTudo() {
+            const value = inp.value.trim();
+            if (value === "") return alert("Please enter any content");
+
+            const li = document.createElement("li");
+            li.classList.add("listItem");
+
+            // Set innerHTML with span and button inside li
+            li.innerHTML = `
+        <span>${value}</span>
+        <button class="deltBtn">Delete</button>
+    `;
+
+            // Attach delete event listener to the button
+            li.querySelector("button").onclick = function () {
+                li.remove();
+            }
+
+            list.appendChild(li);
+            inp.value = "";
+        }
+
+    </script>
+
+</body>
+
+</html>

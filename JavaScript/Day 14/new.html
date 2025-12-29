@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Small Mouse Pointer</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: #f4f4f4;
+    cursor: none; /* hide default cursor */
+  }
+
+  .cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: black;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+  }
+
+  /* click animation using CSS */
+  .cursor:active {
+    transform: translate(-50%, -50%) scale(0.6);
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor"></div>
+
+<script>
+  const cursor = document.querySelector(".cursor");
+
+  document.addEventListener("mousemove", (e) => {
+    cursor.style.top = e.clientY + "px";
+    cursor.style.left = e.clientX + "px";
+  });
+</script>
+
+</body>
+</html>

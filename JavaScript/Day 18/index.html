@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Document</title>
+    <style>
+        .container {
+            width: 800px;
+            /* height: 400px; */
+            min-height: 300px;
+            border: 2px solid red;
+            margin: auto;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .box {
+            width: 200px;
+            height: 100px;
+            border: 2px double green;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn">Click</button>
+    <div class="container">
+
+    </div>
+
+
+    <script>
+      
+        var container = document.querySelector(".container")
+
+        for (var i = 1; i <= 10; i++) {
+            var divElm = document.createElement("div");
+            divElm.classList.add("box");
+            divElm.innerHTML = `<h2>${i}</h2>`
+            container.append(divElm)
+        }
+
+
+    </script>
+
+</body>
+
+</html>

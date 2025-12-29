@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+* {
+    font-family: "Inter", sans-serif !important;
+
+}
+
+header .navbar-collapse {
+    flex-grow: 0;
+}
+
+header form {
+    position: relative;
+}
+
+
+
+header ul {
+    font-size: 16px;
+}
+
+.search-icons {
+    position: absolute;
+    top: 4px;
+    right: 15px;
+    color: red;
+}

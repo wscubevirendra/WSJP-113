@@ -1,0 +1,95 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 800px;
+            height: 400px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 50px auto;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .items {
+            width: 100%;
+            height: 100%;
+            padding: 4px;
+            flex-shrink: 0;
+            transform: translateX(0);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .items img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            gap: 50px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 20px;
+            cursor: pointer;
+            background-color: teal;
+            color: white;
+            border-radius: 8px;
+            border: none;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="items"><img src="1.jpg" alt=""></div>
+        <div class="items"><img src="2.jpg" alt=""></div>
+        <div class="items"><img src="3.jpg" alt=""></div>
+        <div class="items"><img src="4.jpg" alt=""></div>
+        <div class="items"><img src="1.jpg" alt=""></div>
+
+    </div>
+    <div class="btn-container">
+        <button onclick="slidePrev()">Prev</button>
+        <button onclick="slideNext()">Next</button>
+    </div>
+    <script>
+        var items = document.getElementsByClassName("items");
+        var poe = 0;
+        function slideNext() {
+            poe++;
+            if (poe > items.length - 1) {
+                poe = 0;
+            }
+            for (var image of items) {
+                image.style.transform = `translateX(-${poe * 100}%)`;
+            }
+        }
+
+        function slidePrev() {
+            if (poe == 0) {
+                poe = items.length - 1;
+            } else {
+                poe--;
+            }
+
+
+            for (var image of items) {
+                image.style.transform = `translateX(-${poe * 100}%)`;
+            }
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: aqua;
+            border: 2px solid red;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+        }
+
+        .ball {
+            width: 60px;
+            height: 60px;
+            background-color: gold;
+            border-radius: 50%;
+            animation-name: ball;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+        }
+
+        .shadow {
+            width: 80px;
+            height: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            animation-name: shadow;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes ball {
+            0% {
+                transform: translateY(0px);
+                opacity: 1;
+            }
+
+            50% {
+                transform: translateY(200px);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: translateY(0px);
+
+            }
+
+        }
+
+
+        @keyframes shadow {
+            0% {
+                transform: scaleX(1);
+            }
+
+            50% {
+                transform: scaleX(2);
+            }
+
+            100% {
+                transform: scaleX(1);
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ball">
+
+    </div>
+    <div class="shadow"></div>
+
+
+</body>
+
+</html>

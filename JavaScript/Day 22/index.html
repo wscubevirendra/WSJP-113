@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        .box {
+            width: 400px;
+            height: 200px;
+            box-shadow: 0px 2px 3px gray;
+            margin: 50px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <button>start</button>
+        <h2>0</h2>
+        <button>stop</button>
+
+    </div>
+
+    <script>
+        var btn = document.querySelectorAll("button");
+        var h2 = document.querySelector("h2");
+        var refInterval;
+        btn[0].addEventListener(
+            "click",
+            function () {
+                count = 0;
+                refInterval = setInterval(
+                    function () {
+                        count++
+                        h2.innerText = count
+                    },
+                    1000
+                )
+                btn[0].disabled = true
+            }
+        )
+
+
+        btn[1].addEventListener(
+            "click",
+            function () {
+                clearInterval(refInterval)
+                btn[0].disabled=false
+            }
+        )
+    </script>
+
+</body>
+
+</html>

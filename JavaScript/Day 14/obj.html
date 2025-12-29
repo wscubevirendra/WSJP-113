@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        var obj1 = {
+            name: "Mahesh",
+            age: 25,
+            city: "Jaipur",
+            print: function () {
+                console.log(this,"Mene this ko use kiya hai")
+                console.log(`i am ${this.name} and i am ${this.age} year old`)
+            }
+        }
+
+          var obj2 = {
+            name: "Vipin",
+            age: 21,
+            city: "Ajmer",
+            print: function () {
+                console.log(this)
+                console.log(`i am ${this.name} and i am ${this.age} year old`)
+            }
+        }
+
+        console.log(obj1.print())
+        console.log(obj2.print())
+
+      
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+@media (max-width:990px) {
+    .top-container {
+        display: none;
+    }
+
+    header ul {
+        width: 50%;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: -100%;
+        z-index: 998;
+        background: rgba(0, 0, 0, 0.8);
+        height: 100%;
+        color: white;
+        align-items: center;
+        padding-top: 100px;
+    }
+
+   
+
+    #openMenu {
+        display: block;
+    }
+
+    .card {
+        width: 50%;
+    }
+}
+
+
+@media (max-width:775px) {
+    .card {
+        width: 100%;
+    }
+}

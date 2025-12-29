@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Simple Weather App</title>
+  <style>
+    :root { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+    body { background: linear-gradient(180deg,#e3f2fd,#ffffff); min-height:100vh; display:flex; align-items:center; justify-content:center; padding:20px; }
+    .card { width:360px; background:rgba(255,255,255,0.95); border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.08); padding:18px; }
+    .search { display:flex; gap:8px; }
+    input { flex:1; padding:10px 12px; border:1px solid #e6eef7; border-radius:8px; font-size:14px; }
+    button { padding:10px 14px; border:none; border-radius:8px; background:#1976d2; color:white; cursor:pointer; }
+    .info { margin-top:14px; text-align:center; }
+    .city { font-size:20px; font-weight:600; }
+    .temp { font-size:48px; font-weight:700; margin:6px 0; }
+    .desc { text-transform:capitalize; color:#555; }
+    .extra { display:flex; justify-content:space-around; margin-top:12px; color:#333; }
+    .small { font-size:13px; color:#666; }
+    .error { margin-top:10px; color:#b00020; text-align:center; }
+    .loader { text-align:center; margin-top:10px; }
+    img.icon { width:80px; height:80px; }
+  </style>
+</head>
+<body>
+  <div class="card" role="main">
+    <div class="search">
+      <input id="city" placeholder="Enter city name (e.g. Mumbai)" aria-label="City name" />
+      <button id="searchBtn">Search</button>
+    </div>
+
+    <div id="result" class="info" aria-live="polite" hidden>
+      <div class="city" id="cityName"></div>
+      <div><img id="icon" class="icon" alt="" /></div>
+      <div class="temp" id="temp"></div>
+      <div class="desc" id="desc"></div>
+
+      <div class="extra">
+        <div><div class="small">Humidity</div><div id="humidity"></div></div>
+        <div><div class="small">Wind</div><div id="wind"></div></div>
+        <div><div class="small">Feels</div><div id="feels"></div></div>
+      </div>
+    </div>
+
+    <div id="loader" class="loader" hidden>Loading...</div>
+    <div id="error" class="error" hidden></div>
+  </div>
+
+  <script>
+    // ---- Configuration ----
+    const APIKey = '9e1ac06a6f72dc48dc80d70b4f040583'; // your key (client-side)
+    // -----------------------
+
+    const cityInput = document.getElementById('city');
+    const searchBtn = document.getElementById('searchBtn');
+    const resultDiv = document.getElementById('result');
+    const loader = document.getElementById('loader');
+    const errorDiv = document.getElementById('error');
+
+    const cityNameEl = document.getElementById('cityName');
+    const iconEl = document.getElementById('icon');
+    const tempEl = document.getElementById('temp');
+    const descEl = document.getElementById('desc');
+    const humidityEl = document.getElementById('humidity');
+    const windEl = document.getElementById('wind');
+    const feelsEl = document.getElementById('feels');
+
+    function showError(msg) {
+      errorDiv.textContent = msg;
+      errorDiv.hidden = false;
+      resultDiv.hidden = true;
+      loader.hidden = true;
+    }
+
+    function clearMessages() {
+      errorDiv.hidden = true;
+      loader.hidden = true;
+    }
+
+    async function getWeather(city) {
+      clearMessages();
+      if (!city || city.trim().length === 0) {
+        showError('Please enter a city name.');
+        return;
+      }
+      loader.hidden = false;
+
+      try {
+        const APIURL = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&units=metric&appid=${APIKey}`;
+        const resp = await fetch(APIURL);
+        if (!resp.ok) {
+          // handle 404 or other API errors
+          if (resp.status === 404) throw new Error('City not found. Check spelling.');
+          const errText = await resp.text();
+          throw new Error('API error: ' + (errText || resp.status));
+        }
+        const data = await resp.json();
+
+        // populate UI
+        cityNameEl.textContent = `${data.name}, ${data.sys?.country || ''}`;
+        tempEl.textContent = `${Math.round(data.main.temp)}°C`;
+        descEl.textContent = data.weather?.[0]?.description || '';
+        humidityEl.textContent = `${data.main.humidity}%`;
+        windEl.textContent = `${data.wind.speed} m/s`;
+        feelsEl.textContent = `${Math.round(data.main.feels_like)}°C`;
+
+        // icon (OpenWeatherMap icons)
+        const iconCode = data.weather?.[0]?.icon;
+        if (iconCode) {
+          iconEl.src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+          iconEl.alt = data.weather[0].description || 'weather icon';
+          iconEl.hidden = false;
+        } else {
+          iconEl.hidden = true;
+        }
+
+        loader.hidden = true;
+        errorDiv.hidden = true;
+        resultDiv.hidden = false;
+      } catch (err) {
+        showError(err.message || 'Failed to fetch weather. Check console.');
+        console.error(err);
+      }
+    }
+
+    // interactions
+    searchBtn.addEventListener('click', () => getWeather(cityInput.value));
+    cityInput.addEventListener('keydown', e => { if (e.key === 'Enter') getWeather(cityInput.value); });
+
+    // optional: preload with a default city
+    // getWeather('Delhi');
+  </script>
+</body>
+</html>

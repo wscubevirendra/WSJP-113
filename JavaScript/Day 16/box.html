@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Document</title>
+
+    <style>
+        .container {
+            width: 1000px;
+            height: 400px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 50px auto;
+            display: flex;
+
+        }
+
+        .box {
+            width: 160px;
+            height: 160px;
+            background-color: teal;
+            color: white;
+            font-size: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .active {
+            background-color: orange;
+            transform: scale(1.2);
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div onclick="activateBox(this)" class="box ">1</div>
+        <div onclick="activateBox(this)" class="box">2</div>
+        <div onclick="activateBox(this)" class="box">3</div>
+        <div onclick="activateBox(this)" class="box">4</div>
+        <div onclick="activateBox(this)" class="box">5</div>
+    </div>
+
+    <script>
+        var boxes = document.getElementsByClassName("box");
+
+        function activateBox(elem) {
+            
+            for (var i = 0; i < boxes.length; i++) {
+                boxes[i].classList.remove("active");
+            }
+            elem.classList.add("active");
+
+        }
+    </script>
+
+
+</body>
+
+</html>

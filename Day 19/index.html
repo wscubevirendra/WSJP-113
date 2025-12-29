@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        .container {
+            width: 800px;
+            height: 500px;
+            margin: auto;
+            border: 2px solid black;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        .box {
+            width: 100px;
+            height: 50px;
+            background-color: teal;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+            animation-name: move;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+            color: white;
+            text-align: center;
+            
+
+        }
+
+        @keyframes move {
+
+            0%,
+            100% {
+                transform: translateX(0px);
+
+            }
+
+            50% {
+                transform: translateX(700px);
+
+            }
+
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div style="animation-timing-function: linear;" class="box">linear</div>
+        <div style="animation-timing-function: ease-in-out;" class="box">ease-in-out</div>
+        <div style="animation-timing-function: ease-in;" class="box">ease-in</div>
+        <div style="animation-timing-function: ease-out;" class="box">ease-out</div>
+    </div>
+
+</body>
+
+</html>

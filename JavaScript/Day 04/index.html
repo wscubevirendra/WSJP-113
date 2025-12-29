@@ -1,0 +1,85 @@
+<script>
+    //1.--Create a program that determines if a CIBIL score is excellent, good, average, or poor based on given ranges.
+    //1.excellent 750-900    2.good  650-750  3.average 550-650   4.Poor 300-550  5.invalid cibil score
+
+    // var cibil = Number(prompt('Cibil score'));  //890
+    // var result=null
+
+    // if (cibil >= 750 && cibil <= 900) {
+    //     console.log('Excellent')
+    // } else if (cibil >= 650 && cibil < 750) {
+    //     console.log('Good')
+    // } else if (cibil >= 550 && cibil < 650) {
+    //     console.log('Average')
+    // } else if (cibil >= 300 && cibil < 550) {
+    //     console.log("Poor")
+    // } else {
+    //     console.log('Invalid cibil score')
+    // }
+
+
+    //Validate a password based on its length and classify it as weak, or strong.
+    //password length 7--strong    other wise weak
+
+    // var password='2ssdsw2assdasd'
+    // if(password.length>=7){
+    //     console.log('Strong')
+    // }else{
+    //     console.log('weak')
+    // }
+
+    //Calculate simple interest, and apply a discount for short-term loans (less than 1 year).
+    // var principal = 1000;
+    // var rate = 10;
+    // var timeInMonth = 10;
+    // var timeInYear = (timeInMonth / 12); //0.9 year
+
+    // var SI = (principal * rate * timeInYear) / 100   //5rs
+
+    // if (timeInYear < 1) {   //0.9<1
+    //     discount = SI * (50) / 100;    //50
+    //     // SI = SI - discount
+    //     SI -= discount
+    // }
+
+    // console.log(principal + SI)
+
+
+
+    //"Write a program to calculate the electricity bill based on the number of units consumed. Use the following conditions for the tariff rates:
+
+    // For the first 100 units: ₹3 per                unit. 0-100 -----1unit 3rs
+    // For the next 200  ₹5 per unit.                 unit 100-300-----1unit 5rs
+    // For units above 300: ₹10 per unit.             unit 300 >-------1unit 10rs
+    // Fixed surcharge: ₹50 added to the total bill."
+
+
+    var unit = 200;
+    var result;
+    if (unit > 0 && unit <= 100) {
+        result = unit * 3
+    } else if (unit > 100 && unit <= 300) {
+        result = unit * 5
+    } else {
+        result = unit * 10
+    }
+
+    console.log(result + 50)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

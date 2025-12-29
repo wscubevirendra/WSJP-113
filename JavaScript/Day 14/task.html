@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        .container {
+            width: 1100px;
+            height: 400px;
+            border: 2px solid red;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            box-shadow: 2px 4px 8px black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div onclick="addStyle(this,1)" class="box">1</div>
+        <div onclick="addStyle(this,2)" class="box">2</div>
+        <div onclick="addStyle(this,3)" class="box">3</div>
+        <div onclick="addStyle(this,4)" class="box">4</div>
+    </div>
+    <script>
+
+        function addStyle(box, flag) {
+            box.innerText = "Hello"
+            if (flag == 1) {
+                box.style.background = "green"
+            } else if (flag == 2) {
+                box.style.background = "yellow"
+            } else if (flag == 3) {
+                box.style.background = "blue"
+            }else{
+                box.style.background = "pink"
+            }
+        }
+    </script>
+
+</body>
+
+</html>

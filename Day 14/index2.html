@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Document</title>
+    <style>
+        .container {
+            width: 900px;
+            height: 400px;
+            border: 2px double red;
+            margin: 50px auto;
+            position: relative;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: yellow;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: 1s;
+        }
+
+        .container:hover .box {
+            background-color: green;
+            top: 200px;
+            left: 700px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box"></div>
+
+    </div>
+
+</body>
+
+</html>

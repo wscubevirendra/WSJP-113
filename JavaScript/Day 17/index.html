@@ -1,0 +1,44 @@
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            border: 2px double red;
+            margin: 50px auto;
+
+        }
+
+        .active {
+            background-color: green;
+            transform: scale(1.1);
+            transition: 400ms;
+            border-radius: 4px;
+        }
+
+        input {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <input onkeyup="demo(event)" id="box" type="text">
+    </div>
+    <script>
+        var box = document.getElementById("box")
+
+        function demo(event) {
+            if (event.key == "Enter") {
+                console.log(event.target.value)
+            }
+        }
+    </script>
+
+</body>
+
+</html>

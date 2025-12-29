@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        #box {
+            width: 700px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="box">Hello</h1>
+    <button onclick="demo()">Click</button>
+
+    <script>
+        var box = document.getElementById("box");
+
+        function demo() {
+            box.style.background = "green",
+            box.style.fontSize='40px'
+            box.style.color="white"
+        }
+
+    </script>
+
+</body>
+
+</html>

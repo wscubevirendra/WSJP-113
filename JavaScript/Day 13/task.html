@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        #image {
+            width: 400px;
+            height: 300px;
+            border: 2px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <img id="image" src="https://cdn.pixabay.com/photo/2015/10/31/12/00/question-1015308_960_720.jpg" alt="">
+    <button onclick="changeImage()">Best Movie</button>
+
+    <script>
+        var image = document.getElementById('image')
+
+        function changeImage() {
+            image.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwD3yXqcGTINad1n6_-0YxR8i8np1SxJfC2g&s"
+        }
+
+
+    </script>
+
+</body>
+
+</html>

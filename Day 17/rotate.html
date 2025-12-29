@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            border: 2px solid red;
+            margin: 100px auto;
+            /* border-radius: 50%; */
+            position: relative;
+            transition: 1s;
+
+
+        }
+
+        .circle {
+            width: 20px;
+            height: 20px;
+            background: yellow;
+            border-radius: 50%;
+            position: absolute;
+            top: 50px;
+
+        }
+
+        .box:hover{
+            transform: rotate(360deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="circle">
+        </div>
+    </div>
+
+</body>
+
+</html>
