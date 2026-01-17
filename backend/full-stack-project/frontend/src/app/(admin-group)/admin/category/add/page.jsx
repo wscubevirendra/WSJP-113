@@ -1,10 +1,42 @@
 "use client";
-
+import { useRef } from "react";
 import { FiTag, FiLink, FiImage } from "react-icons/fi";
+import { slugCreate, notify, axiosAPIinstance } from "@/utils/helper";
+
 
 export default function AddCategoryPage() {
+
+    const nameRef = useRef();
+    const slugRef = useRef();
+
+    function generateSlug() {
+        const slug = slugCreate(nameRef.current.value);
+        slugRef.current.value = slug
+    }
+
+
+
+    function submitHandler(e) {
+        e.preventDefault();
+        const payload = new FormData();
+        payload.append("name", nameRef.current.value);
+        payload.append("slug", slugRef.current.value);
+        payload.append("image", e.target.image.files[0]);
+        axiosAPIinstance.post("category/create", payload).then((response) => {
+            notify(response.data.message, response.data.success);
+            if (response.data.success) {
+                nameRef.current.value = "";
+                slugRef.current.value = "";
+            }
+        }).catch((error) => {
+            notify(error?.response?.data?.message, false)
+        })
+
+    }
+
     return (
         <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-sm p-10">
+
             {/* HEADER */}
             <div className="mb-6">
                 <h1 className="text-3xl font-bold">Add Category</h1>
@@ -14,7 +46,7 @@ export default function AddCategoryPage() {
             </div>
 
             {/* FORM */}
-            <form className="space-y-6">
+            <form onSubmit={submitHandler} className="space-y-6">
                 {/* CATEGORY NAME */}
                 <div>
                     <label className="text-sm font-medium text-gray-600">
@@ -23,6 +55,8 @@ export default function AddCategoryPage() {
                     <div className="mt-2 flex items-center gap-3 border rounded-xl px-4 py-3 focus-within:ring-2 focus-within:ring-[#ff7b00]">
                         <FiTag className="text-gray-400" />
                         <input
+                            onChange={generateSlug}
+                            ref={nameRef}
                             type="text"
                             placeholder="Enter category name"
                             className="w-full outline-none"
@@ -38,6 +72,8 @@ export default function AddCategoryPage() {
                     <div className="mt-2 flex items-center gap-3 border rounded-xl px-4 py-3 focus-within:ring-2 focus-within:ring-[#ff7b00]">
                         <FiLink className="text-gray-400" />
                         <input
+                            ref={slugRef}
+                            readOnly
                             type="text"
                             placeholder="enter-category-slug"
                             className="w-full outline-none"
@@ -55,6 +91,7 @@ export default function AddCategoryPage() {
                         <input
                             type="file"
                             accept="image/*"
+                            name="image"
                             className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4
                             file:rounded-lg file:border-0
                             file:text-sm file:font-semibold
@@ -74,6 +111,7 @@ export default function AddCategoryPage() {
                     </button>
 
                     <button
+
                         type="submit"
                         className="px-6 py-2 rounded-xl bg-[#ff7b00] text-white hover:opacity-90"
                     >

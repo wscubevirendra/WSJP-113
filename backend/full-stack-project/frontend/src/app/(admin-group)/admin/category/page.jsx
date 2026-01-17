@@ -1,45 +1,24 @@
-"use client";
+import { getCategories } from "@/api/category";
 import Link from "next/link";
-
+import StatusBadge from "@/components/admin/StatusBadge"
 import {
   FiEdit,
   FiTrash2,
   FiPlus,
 } from "react-icons/fi";
+import DeleteBtn from "@/components/admin/DeleteBtn";
 
-const users = [
-  {
-    id: 1,
-    name: "Robert Fox",
-    email: "robert@mail.com",
-    role: "Admin",
-    status: "Active",
-  },
-  {
-    id: 2,
-    name: "John Wick",
-    email: "john@mail.com",
-    role: "Editor",
-    status: "Pending",
-  },
-  {
-    id: 3,
-    name: "Sarah Smith",
-    email: "sarah@mail.com",
-    role: "User",
-    status: "Blocked",
-  },
-];
+export default async function page() {
+  const categories = await getCategories("?status=true");
 
-export default function page() {
   return (
     <div className="bg-white rounded-2xl shadow p-6">
       {/* HEADER */}
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h2 className="text-2xl font-bold">User Management</h2>
+          <h2 className="text-2xl font-bold">Category Management</h2>
           <p className="text-gray-500 text-sm">
-            Manage users, roles and status
+            Manage Category, Name and Actions
           </p>
         </div>
 
@@ -47,7 +26,7 @@ export default function page() {
         <Link href="/admin/category/add">
           <button className="flex items-center gap-2 bg-[#ff7b00] text-white px-5 py-2 rounded-xl hover:opacity-90 transition">
             <FiPlus size={18} />
-            Add User
+            Add Category
           </button>
         </Link>
 
@@ -58,81 +37,62 @@ export default function page() {
         <table className="w-full border-collapse">
           <thead>
             <tr className="bg-gray-100 text-gray-600 text-sm">
+              <th className="p-4 text-left rounded-l-xl">image</th>
               <th className="p-4 text-left rounded-l-xl">Name</th>
-              <th className="p-4 text-left">Email</th>
-              <th className="p-4 text-left">Role</th>
+              <th className="p-4 text-left">Slug</th>
               <th className="p-4 text-left">Status</th>
               <th className="p-4 text-left rounded-r-xl">Actions</th>
             </tr>
           </thead>
 
           <tbody>
-            {users.map((user) => (
-              <tr
-                key={user.id}
-                className="border-t hover:bg-orange-50 transition"
-              >
-                <td className="p-4 font-medium">
-                  {user.name}
-                </td>
-                <td className="p-4 text-gray-600">
-                  {user.email}
-                </td>
-                <td className="p-4">
-                  <span className="px-3 py-1 text-sm rounded-full bg-gray-100">
-                    {user.role}
-                  </span>
-                </td>
+            {
+              categories
+              &&
+              categories.data.map((cat) => (
+                <tr
+                  key={cat._id}
+                  className="border-t hover:bg-orange-50 transition"
+                >
+                  <td className="p-4 font-medium">
+                    <img className="w-20 rounded-md h-10" src={process.env.NEXT_PUBLIC_CATEGORY_IMAGE_URL + cat.image} alt={cat.name} />
+                  </td>
+                  <td className="p-4 font-medium">
+                    {cat.name}
+                  </td>
+                  <td className="p-4 text-gray-600">
+                    {cat.slug}
+                  </td>
 
-                {/* STATUS */}
-                <td className="p-4">
-                  <StatusBadge status={user.status} />
-                </td>
 
-                {/* ACTIONS */}
-                <td className="p-4">
-                  <div className="flex items-center gap-3">
-                    <button className="p-2 rounded-lg bg-orange-100 text-[#ff7b00] hover:bg-orange-200">
-                      <FiEdit />
-                    </button>
-                    <button className="p-2 rounded-lg bg-red-100 text-red-500 hover:bg-red-200">
-                      <FiTrash2 />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
+                  {/* STATUS */}
+                  <td className="p-4 flex gap-2">
+                    <StatusBadge url={`category/status/${cat._id}`} status={cat.status} flag="status" />
+                    <StatusBadge url={`category/status/${cat._id}`} status={cat.is_top} flag="is_top" />
+                    <StatusBadge url={`category/status/${cat._id}`} status={cat.is_best} flag="is_best" />
+                    <StatusBadge url={`category/status/${cat._id}`} status={cat.is_home} flag="is_home" />
+                  </td>
+
+                  {/* ACTIONS */}
+                  <td className="p-4">
+                    <div className="flex items-center gap-3">
+                      <Link href={`/admin/category/edit/${cat._id}`}>
+                        <button className="p-2 rounded-lg bg-orange-100 text-[#ff7b00] hover:bg-orange-200">
+                          <FiEdit />
+                        </button>
+                      </Link>
+
+                      <DeleteBtn url={`category/delete/${cat._id}`} />
+                    </div>
+                  </td>
+                </tr>
+              ))
+
+            }
           </tbody>
         </table>
       </div>
-    </div>
+    </div >
   );
 }
 
-/* STATUS BADGE */
-function StatusBadge({ status }) {
-  const base =
-    "px-3 py-1 rounded-full text-sm font-medium";
-
-  if (status === "Active") {
-    return (
-      <span className={`${base} bg-green-100 text-green-600`}>
-        Active
-      </span>
-    );
-  }
-
-  if (status === "Pending") {
-    return (
-      <span className={`${base} bg-yellow-100 text-yellow-600`}>
-        Pending
-      </span>
-    );
-  }
-
-  return (
-    <span className={`${base} bg-red-100 text-red-600`}>
-      Blocked
-    </span>
-  );
-}

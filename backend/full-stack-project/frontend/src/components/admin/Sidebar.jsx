@@ -2,28 +2,19 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-    FiGrid,
-    FiFileText,
-    FiCreditCard,
-    FiClock,
-    FiSettings,
-    FiLogOut,
-} from "react-icons/fi";
-
+import { FiGrid, FiFileText, FiCreditCard, FiClock, FiSettings, FiLogOut } from "react-icons/fi";
 const menu = [
     { name: "Dashboard", path: "/admin", icon: FiGrid },
     { name: "Category", path: "/admin/category", icon: FiFileText },
-    { name: "Product", path: "/cards", icon: FiCreditCard },
     { name: "Color", path: "/admin/color", icon: FiClock },
+    { name: "Brand", path: "/admin/brand", icon: FiClock },
+    { name: "Product", path: "/admin/product", icon: FiCreditCard },
     { name: "Settings", path: "/settings", icon: FiSettings },
 ];
 
+
 export default function Sidebar() {
     const pathname = usePathname();
-
-
-
     return (
         <aside className="w-64 h-100vh bg-white shadow-xl flex flex-col">
             {/* LOGO */}
@@ -32,7 +23,6 @@ export default function Sidebar() {
                     Admin<span className="text-gray-800">Panel</span>
                 </h1>
             </div>
-
             {/* MENU */}
             <nav className="p-4 space-y-2 flex-1">
                 {menu.map((item) => {
@@ -67,7 +57,6 @@ export default function Sidebar() {
                     );
                 })}
             </nav>
-
             {/* LOGOUT BUTTON */}
             <div className="p-4 ">
                 <button
