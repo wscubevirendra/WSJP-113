@@ -2,8 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useSelector } from "react-redux";
 
 const RecipeHeader = () => {
+  const cart = useSelector((state) => state.cart);
+  console.log(cart)
   const pathname = usePathname();
 
   const navLinks = [
@@ -32,11 +35,10 @@ const RecipeHeader = () => {
             <Link
               key={link.path}
               href={link.path}
-              className={`transition ${
-                pathname === link.path
-                  ? "text-green-600 border-b-2 border-green-600"
-                  : "text-gray-600 hover:text-green-600"
-              }`}
+              className={`transition ${pathname === link.path
+                ? "text-green-600 border-b-2 border-green-600"
+                : "text-gray-600 hover:text-green-600"
+                }`}
             >
               {link.name}
             </Link>

@@ -9,8 +9,8 @@ import {
 import DeleteBtn from "@/components/admin/DeleteBtn";
 
 export default async function page() {
-  const categories = await getCategories("?status=true");
-
+  const categoriData = await getCategories();
+  console.log(categoriData)
   return (
     <div className="bg-white rounded-2xl shadow p-6">
       {/* HEADER */}
@@ -47,15 +47,15 @@ export default async function page() {
 
           <tbody>
             {
-              categories
+              categoriData.category
               &&
-              categories.data.map((cat) => (
+              categoriData?.category.map((cat) => (
                 <tr
                   key={cat._id}
                   className="border-t hover:bg-orange-50 transition"
                 >
                   <td className="p-4 font-medium">
-                    <img className="w-20 rounded-md h-10" src={process.env.NEXT_PUBLIC_CATEGORY_IMAGE_URL + cat.image} alt={cat.name} />
+                    <img className="w-20 rounded-md h-10" src={categoriData?.imageBaseUrl + cat.image} alt={cat.name} />
                   </td>
                   <td className="p-4 font-medium">
                     {cat.name}

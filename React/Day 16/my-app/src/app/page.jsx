@@ -16,7 +16,7 @@ export default async function page() {
         <div className='grid grid-cols-4'>
           {
             topRecipes.map((recipe) => {
-              return <RecipeCard thumbnail={recipe.image} title={recipe.name} price={499} id={recipe.id} key={recipe.id} />
+             return <RecipeCard thumbnail={recipe.image} title={recipe.name} price={499} id={recipe.id} key={recipe.id} />
             })
           }
         </div>

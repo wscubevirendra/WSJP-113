@@ -51,7 +51,7 @@ export default function AddCategoryPage() {
         }
 
         const discount = ((originalPrice - finalPrice) / originalPrice) * 100;
-        dp.current.value = Number(discount.toFixed(2))
+        dp.current.value = parseInt(discount.toFixed(2))
 
     }
 

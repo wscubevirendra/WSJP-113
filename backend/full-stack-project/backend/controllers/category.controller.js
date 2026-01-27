@@ -1,8 +1,9 @@
-const categoryModel = require("../models/category.model");
+const ProductModel = require("../models/product.model");
 const CategoryModel = require("../models/category.model");
 const { uniqueName } = require("../utils/helper");
 const fs = require("fs");
-const { sendAllFieldsRequired, sendAlreadyExist, sendCreated, sendServerError, sendSuccess, sendUpdated, sendNotFound, sendDeleted } = require("../utils/responseHelpers")
+const { sendAllFieldsRequired, sendAlreadyExist, sendCreated, sendServerError, sendSuccess, sendUpdated, sendNotFound, sendDeleted } = require("../utils/responseHelpers");
+const productModel = require("../models/product.model");
 
 const create = async (req, res) => {
     try {
@@ -37,9 +38,21 @@ const get = async (req, res) => {
         if (query.home) dynamicFilter.is_home = query.home == "true" ? true : false;
         if (query.is_best) dynamicFilter.is_best = query.is_best == "true" ? true : false;
         if (query.is_top) dynamicFilter.is_top = query.is_top == "true" ? true : false;
-        console.log(dynamicFilter)
+
         const category = await CategoryModel.find(dynamicFilter).limit(limit);
-        return sendSuccess(res, "Category Find", category);
+        const data = await Promise.all(
+            category.map(
+                async (cat) => {
+                    const productCount = await ProductModel.countDocuments({ category_id: cat._id })
+                    return {
+                        ...cat._doc,
+                        count: productCount
+                    }
+                })
+        )
+
+
+        return sendSuccess(res, "Category Find", { category: data, imageBaseUrl: "http://localhost:5000/images/category/" });
     } catch (error) {
         return sendServerError(res);
     }

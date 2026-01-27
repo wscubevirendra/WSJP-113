@@ -1,4 +1,6 @@
 const ProductModel = require("../models/product.model");
+const CategoryModel = require("../models/category.model");
+const BrandModel = require("../models/brand.model");
 const { uniqueName } = require("../utils/helper");
 const fs = require("fs");
 const { sendAllFieldsRequired, sendAlreadyExist, sendCreated, sendServerError, sendSuccess, sendUpdated, sendNotFound, sendDeleted } = require("../utils/responseHelpers");
@@ -28,7 +30,51 @@ const create = async (req, res) => {
 
 const get = async (req, res) => {
     try {
-        const product = await ProductModel.find().populate([
+        const query = req.query;
+        const searchFilter = {};
+        const sortFilter = {};
+        const limit = query.limit != null ? query.limit : 0
+
+
+        console.log(query, "req.sort")
+        if (query.sort === "price_asc") {
+            sortFilter.final_price = 1;
+        } else if (query.sort === "price_desc") {
+            sortFilter.final_price = -1;
+        } else {
+            sortFilter.createdAt = -1
+        }
+
+        console.log(sortFilter, "sortfilter")
+        if (query.id) searchFilter._id = query.id;
+        if (query.status) searchFilter.status = query.status == "true" ? true : false;
+        if (query.home) searchFilter.show_home = query.home == "true" ? true : false;
+        if (query.stock) searchFilter.stock = query.stock == "true" ? true : false;
+        if (query.best_seller) searchFilter.is_best_seller = query.best_seller == "true" ? true : false;
+        if (query.is_top) searchFilter.is_top = query.is_top == "true" ? true : false;
+        if (query.featured) searchFilter.is_featured = query.featured == "true" ? true : false;
+        if (query.hot) searchFilter.is_hot = query.hot == "true" ? true : false;
+
+        if (query.categorySlug) {
+            const category = await CategoryModel.findOne({ slug: query.categorySlug });
+            searchFilter.category_id = category._id
+        }
+        if (query.brandSlug) {
+            const brand = await BrandModel.findOne({ slug: query.brandSlug });
+            searchFilter.brand_id = brand._id
+        }
+        if (query.color_ids) {
+            searchFilter.color_ids = query.color_ids
+        }
+        if (query.min_price && query.max_price) {
+            searchFilter.final_price = {
+                $gte: Number(query.min_price),
+                $lte: Number(query.max_price)
+            };
+        }
+
+
+        const product = await ProductModel.find(searchFilter).populate([
             {
                 path: "category_id",
                 select: "name slug"
@@ -42,7 +88,7 @@ const get = async (req, res) => {
                 select: "name slug"
             },
 
-        ]);
+        ]).sort(sortFilter).limit(limit);
 
         return sendSuccess(res, "Product Find", { product, imageBaseUrl: "http://localhost:5000/images/product/" });
     } catch (error) {

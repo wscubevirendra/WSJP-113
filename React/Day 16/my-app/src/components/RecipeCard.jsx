@@ -29,7 +29,7 @@ const RecipeCard = ({ thumbnail, price, title, id }) => {
                         ₹{price}
                     </span>
 
-                    <CartBtn id={id} />
+                    <CartBtn id={id} price={price} title={title} />
                 </div>
             </div>
         </div>
