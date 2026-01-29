@@ -59,7 +59,7 @@ const ProductsToolbar = () => {
                     onChange={(e) => sortHandler(e.target.value)}
                     className="border rounded px-2 py-1"
                 >
-                    <option value="">Default</option>
+                    <option value="">Latest</option>
                     <option value="price_asc">Price Low → High</option>
                     <option value="price_desc">Price High → Low</option>
                 </select>

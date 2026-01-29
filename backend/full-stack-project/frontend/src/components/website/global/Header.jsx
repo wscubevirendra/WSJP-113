@@ -3,8 +3,15 @@
 import { FiSearch, FiShoppingCart, FiUser, FiChevronDown, FiMenu } from 'react-icons/fi'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { lsToCart } from '@/redux/reducers/cartReducer'
+import { formatIndianCurrency } from '@/utils/helper'
 
 export default function Header() {
+    const cart = useSelector((store) => store.cart)
+    const dispached = useDispatch();
+
     const items = [
         {
             name: "Home",
@@ -19,8 +26,15 @@ export default function Header() {
             path: "/contact"
         }
     ]
+
+    useEffect(
+        () => {
+            dispached(lsToCart())
+        },
+        []
+    )
     return (
-        <header className="w-full bg-white border-b">
+        <header className="w-full sticky top-0 z-40 bg-white border-b">
 
             {/*  Top Bar  */}
             <div className="hidden md:block  text-sm px-2">
@@ -88,14 +102,18 @@ export default function Header() {
                         <p className="text-xs text-gray-500">WELCOME</p>
                         <p className="font-semibold text-sm">LOG IN / REGISTER</p>
                     </div>
+                    <Link href="/cart">
+                        <div className="relative flex items-center gap-2 cursor-pointer">
+                            <FiShoppingCart size={22} />
+                            <span className="absolute -top-2 -right-2 bg-teal-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                                {cart.data.length}
+                            </span>
+                            <span className="hidden md:block font-semibold">{formatIndianCurrency(cart.final_total)}</span>
+                        </div>
 
-                    <div className="relative flex items-center gap-2 cursor-pointer">
-                        <FiShoppingCart size={22} />
-                        <span className="absolute -top-2 -right-2 bg-teal-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
-                            5
-                        </span>
-                        <span className="hidden md:block font-semibold">$1,689.00</span>
-                    </div>
+                    </Link>
+
+
 
                     {/* Mobile Menu */}
                     <button className="lg:hidden">

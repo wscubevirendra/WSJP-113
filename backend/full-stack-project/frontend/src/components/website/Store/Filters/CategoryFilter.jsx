@@ -5,7 +5,6 @@ import { usePathname } from 'next/navigation'
 
 export default function CategoryFilter({ categories }) {
     const pathname = usePathname();
-    console.log(pathname)
 
     return (
         <div className='bg-[#EEEFF6] rounded-2xl shadow-sm  p-5'>
@@ -34,8 +33,8 @@ export default function CategoryFilter({ categories }) {
                                     flex items-center justify-between
                                     px-3 py-2 rounded-lg cursor-pointer transition
                                     ${isActive
-                                        ? 'bg-black text-white'
-                                        : 'text-gray-700 hover:bg-gray-100'
+                                        ? 'bg-teal-500 text-white'
+                                        : 'text-gray-700 hover:bg-gray-200'
                                     }
                                 `}
                             >

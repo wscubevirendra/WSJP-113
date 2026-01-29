@@ -1,3 +1,5 @@
+import AddToCartButton from "./AddToCartButton";
+
 const ProductCard = ({ product, imageBaseUrl }) => {
     const imageUrl = product?.thumbnail
         ? `${imageBaseUrl}main/${product.thumbnail}`
@@ -41,7 +43,7 @@ const ProductCard = ({ product, imageBaseUrl }) => {
             <div className="p-3 space-y-1">
 
                 {/* TITLE */}
-                <h3 className="text-sm font-medium text-gray-800 line-clamp-2">
+                <h3 className="text-sm font-medium  text-gray-800 ">
                     {product.name}
                 </h3>
 
@@ -65,34 +67,10 @@ const ProductCard = ({ product, imageBaseUrl }) => {
                     </p>
                 )}
             </div>
+            <AddToCartButton id={product._id} name={product.name} image={imageUrl} final_price={product.final_price} original_price={product.original_price} />
 
-            {/* ADD TO CART (HOVER ACTION) */}
-            <div className="absolute inset-x-0 bottom-0 p-3 bg-white translate-y-full group-hover:translate-y-0 transition hidden sm:block">
-                <button
-                    disabled={!product.stock}
-                    className={`w-full py-2 rounded-lg text-sm font-medium transition
-                        ${product.stock
-                            ? 'bg-black text-white hover:bg-gray-900'
-                            : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                        }`}
-                >
-                    Add to Cart
-                </button>
-            </div>
 
-            {/* MOBILE BUTTON */}
-            <div className="p-3 pt-0 sm:hidden">
-                <button
-                    disabled={!product.stock}
-                    className={`w-full py-2 rounded-lg text-sm font-medium transition
-                        ${product.stock
-                            ? 'bg-black text-white'
-                            : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                        }`}
-                >
-                    Add to Cart
-                </button>
-            </div>
+
         </div>
     );
 };

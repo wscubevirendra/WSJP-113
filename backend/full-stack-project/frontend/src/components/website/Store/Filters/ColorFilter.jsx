@@ -1,41 +1,33 @@
 'use client'
 
 import { useSearchParams, useRouter } from 'next/navigation'
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Check } from 'lucide-react'
 
 export default function ColorFilter({ colorData }) {
     const router = useRouter()
     const searchParams = useSearchParams()
-    const [userColor, setUserColor] = useState(null)
+    const urlColor = searchParams.get('color_ids')
 
     function handleColorClick(id) {
         const query = new URLSearchParams(searchParams.toString())
 
-        if (userColor === id) {
+        if (urlColor === id) {
             query.delete('color_ids')
-            setUserColor(null)
-            router.push(`?${query.toString()}`)
-            return
+        } else {
+            query.set('color_ids', id)
         }
 
-        query.set('color_ids', id)
-        setUserColor(id)
-        router.push(`?${query.toString()}`)
+        router.push(`?${query.toString()}`, { scroll: false })
     }
 
-    useEffect(() => {
-        const urlColor = searchParams.get('color_ids')
-        setUserColor(urlColor)
-    }, [searchParams])
-
     return (
-        <div className='bg-[#EEEFF6] rounded-2xl shadow-sm  p-5'>
+        <div className='bg-[#EEEFF6] rounded-2xl shadow-sm p-5'>
             <h4 className="font-medium text-gray-800 mb-4">By Color</h4>
 
             <div className="flex flex-wrap gap-3">
                 {colorData.data.map((color) => {
-                    const isActive = userColor === color._id
+                    const isActive = urlColor === color._id
                     return (
                         <button
                             key={color._id}

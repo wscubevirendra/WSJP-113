@@ -17,5 +17,12 @@ const axiosAPIinstance = axios.create({
     baseURL: process.env.NEXT_PUBLIC_API_BASE_URL
 });
 
+function formatIndianCurrency(amount) {
+    return amount.toLocaleString('en-IN', {
+        style: 'currency',
+        currency: 'INR'
+    });
+}
 
-export { notify, slugCreate, axiosAPIinstance }
+
+export { notify, slugCreate, axiosAPIinstance, formatIndianCurrency }
